@@ -1,0 +1,20 @@
+{
+  "name": "Safety Commands Hub",
+  "short_name": "Safety Hub",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#2C4AA5",
+  "icons": [
+    {
+      "src": "icons/PPE1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/PPE1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
