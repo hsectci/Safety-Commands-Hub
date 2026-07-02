@@ -7,12 +7,12 @@
   "theme_color": "#2C4AA5",
   "icons": [
     {
-      "src": "icons/PPE1.png",
+      "src": "icons/engineer.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/PPE1.png",
+      "src": "icons/engineer.png",
       "sizes": "512x512",
       "type": "image/png"
     }
