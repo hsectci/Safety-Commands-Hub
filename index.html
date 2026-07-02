@@ -133,6 +133,17 @@ audio {
 <div id="app"></div>
 
 <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then(() => {
+          console.log("Service Worker registered");
+        })
+        .catch(error => {
+          console.log("Service Worker registration failed:", error);
+        });
+    });
+  }
 const data = [
   { cat: "ppe", en: "英文: Wear safety helmet", th: "泰文: ใส่หมวกด้วย", cn: "中文: 請戴安全帽", pn: "Pinyin: sai (帶) muak (帽子) duay", audio: "helmet.mp3" },
   { cat: "ppe", en: "英文: Wear your safey harness", th: "泰文: ใส่เข็มขัดนิรภัยด้วย", cn: "中文: 請配戴安全帶",pn: "Pinyin: sai (帶) khem-khat (帶子) ni-ra-phai (安全)duay" , audio: "safety_harness.mp3" },
