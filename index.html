@@ -365,7 +365,7 @@ const categories = [
 ];
 
 const app = document.getElementById("app");
-const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co";
+const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
 
 const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
 
@@ -396,142 +396,112 @@ function similarity(a, b) {
 
   return match / longer.length;
 }
-function showSubCategories(cat){
-    app.innerHTML = "";
-    const back = document.createElement("button");
-    back.className = "btn";
-    back.innerText = "← Back (回上一頁)";
-    back.onclick = showCategories;
-    app.appendChild(back);
-    const h = document.createElement("h2");
-    h.innerText = cat.name;
-    app.appendChild(h);
-    cat.sub.forEach(s=>{
+function showCategories() {
+  app.innerHTML = "<h2>Categories (選擇類別)</h2>";
 
-        const btn = document.createElement("button");
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.className = "btn category";
 
-        btn.className = "btn category";
-        btn.innerText = s.name;
+    btn.innerHTML = `
+      <img src="icons/${cat.icon}" class="catIcon">
+      <span>${cat.name}</span>
+    `;
 
-        btn.onclick = ()=>{
+    btn.onclick = () => {
+      if (cat.key === "feedback") {
 
-            showWords(cat.key, s.name, s.key);
+        showFeedback();
 
-        };
+      }
 
-        app.appendChild(btn);
+      else if (cat.sub) {
+        showSubCategories(cat);
+      } else {
+        showWords(cat.key, cat.name);
+      }
+    };
 
-    });
-
+    app.appendChild(btn);
+  });
 }
+
 function showWords(catKey, title, subKey = null) {
 
-    app.innerHTML = "";
+  app.innerHTML = "";
 
-    const back = document.createElement("button");
+  // BACK BUTTON
+  const back = document.createElement("button");
+  back.className = "btn";
+  back.id = "backBtn";
+  back.innerText = "← Back (回上一頁)";
+  back.onclick = showCategories;
+  app.appendChild(back);
 
-    back.className = "btn";
-    back.id = "backBtn";
-    back.innerText = "← Back (回上一頁)";
+  // TITLE
+  const h = document.createElement("h2");
+  h.innerText = title;
+  app.appendChild(h);
 
-    back.onclick = showCategories;
+  // FILTER DATA (ONLY ONCE)
+  const items = data.filter(d => {
 
-    app.appendChild(back);
-
-    const h = document.createElement("h2");
-
-    h.innerText = title;
-
-    app.appendChild(h);
-
-    const items = data.filter(d => {
-        if(subKey){
-
-            return d.cat === catKey && d.sub === subKey;
-
-        }
-
-        return d.cat === catKey;
-
-
-    });
-    items.forEach(item=>{
-        const container = document.createElement("div");
-
-        container.className = "btn word";
-        container.innerHTML = `
-
-        <button class="heartBtn">
-
-        ⭐ <span id="heart-${item.id || 0}">0</span>
-
-        </button>
-
-
-        <div><b>${item.en}</b></div>
-
-        <div>${item.cn || ""}</div>
-
-        <div>${item.th}</div>
-
-        <div>${item.pn}</div>
-
-        `;
-
-        const audio = document.createElement("audio");
-
-        audio.src = "MP3/" + item.audio;
-
-        audio.controls = true;
-
-        container.appendChild(audio);
-
-        app.appendChild(container);
-
-        const heartBtn = container.querySelector(".heartBtn");
-
-
-        heartBtn.onclick = ()=>{
-
-            addHeart(item.id);
-
-        };
-
-
-    });
-
-
-}
-
-document.getElementById("searchBox").addEventListener("input", function(){
-
-
-    const query = this.value.toLowerCase().trim();
-
-
-
-    if(!query){
-
-        showCategories();
-
-        return;
-
+    if (subKey) {
+      return d.cat === catKey && d.sub === subKey;
     }
 
-    const results = data.filter(item=>{
+    return d.cat === catKey;
 
+  });
 
-        const text = getSearchText(item);
+  // SHOW ITEMS
+  items.forEach(item => {
+    const container = document.createElement("div");
+    container.className = "btn word";
 
-        return text.includes(query);
+    container.innerHTML = `
 
+    <button class="heartBtn">
+      ⭐ <span id="heart-${item.id}">0</span>
+      </button>
+      <div><b>${item.en}</b></div>
+      <div>${item.cn || ""}</div>
+      <div>${item.th}</div>
+      <div>${item.pn}</div>
 
-    });
+      
+    `;
 
+    const audio = document.createElement("audio");
+    audio.src = "MP3/" + item.audio;
+    audio.controls = true;
 
-    showSearchResults(results);
+    container.appendChild(audio);
+    app.appendChild(container);
 
+    const heartBtn = container.querySelector(".heartBtn");
 
+heartBtn.onclick = ()=>{
+
+  addHeart(item.id);
+
+};
+  });
+}
+document.getElementById("searchBox").addEventListener("input", function () {
+  const query = this.value.toLowerCase().trim();
+
+  if (!query) {
+    showCategories();
+    return;
+  }
+
+  const results = data.filter(item => {
+  const text = getSearchText(item);
+  return text.includes(query);
+  });
+
+  showSearchResults(results);
 });
 function showSearchResults(results) {
   app.innerHTML = "";
@@ -562,7 +532,33 @@ function showSearchResults(results) {
     app.appendChild(container);
   });
 }
+function showSubCategories(cat){
 
+    app.innerHTML = "";
+
+    const back = document.createElement("button");
+    back.className = "btn";
+    back.innerText = "← Back (回上一頁)";
+    back.onclick = showCategories;
+    app.appendChild(back);
+
+    const h = document.createElement("h2");
+    h.innerText = cat.name;
+    app.appendChild(h);
+
+    cat.sub.forEach(s=>{
+
+        const btn = document.createElement("button");
+        btn.className = "btn category";
+        btn.innerText = s.name;
+
+        btn.onclick = ()=>{
+            showWords(cat.key, s.name, s.key);
+        };
+
+        app.appendChild(btn);
+
+    });
 function addHeart(id){
 
   let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
@@ -575,6 +571,56 @@ function addHeart(id){
   );
 
   document.getElementById("heart-"+id).innerText = hearts[id];
+}
+}
+function showSubCategories(cat){
+
+
+    app.innerHTML = "";
+
+
+    const back = document.createElement("button");
+
+    back.className = "btn";
+
+    back.innerText = "← Back (回上一頁)";
+
+    back.onclick = showCategories;
+
+    app.appendChild(back);
+
+
+
+    const h = document.createElement("h2");
+
+    h.innerText = cat.name;
+
+    app.appendChild(h);
+
+    cat.sub.forEach(s=>{
+
+
+        const btn = document.createElement("button");
+
+
+        btn.className = "btn category";
+
+
+        btn.innerText = s.name;
+
+
+
+        btn.onclick = ()=>{
+
+            showWords(cat.key, s.name, s.key);
+
+        };
+
+
+        app.appendChild(btn);
+
+    });
+
 
 }
 function showFeedback(){
@@ -597,8 +643,6 @@ function showFeedback(){
 
   app.appendChild(back);
 
-
-
   // Title
 
   const title = document.createElement("h2");
@@ -606,10 +650,6 @@ function showFeedback(){
 
 
   app.appendChild(title);
-
-
-
-
 
   const form = document.createElement("div");
 
@@ -633,16 +673,11 @@ id="projectName"
 placeholder="Enter project name"
 >
 
-
-
-
 <label>
 2. 「現場簡易安衛用語」工具是否實用？
 <br>
 Is the “Simple Safety Language for Field Use” helpful?
 </label>
-
-
 
 <select id="helpful">
 
@@ -665,17 +700,11 @@ Is the “Simple Safety Language for Field Use” helpful?
 </select>
 
 
-
-
-
-
 <label>
 3. 「現場簡易安衛用語」工具是否容易使用?
 <br>
 Is the “Simple Safety Language for Field Use” easy to use?
 </label>
-
-
 
 
 <select id="easyUse">
@@ -699,19 +728,11 @@ Is the “Simple Safety Language for Field Use” easy to use?
 </select>
 
 
-
-
-
-
-
 <label>
 4. 請進一步說明需要改善的部分。
 <br>
 Please indicate which part needs to be improved.
 </label>
-
-
-
 
 <select id="improvement">
 
@@ -733,13 +754,6 @@ Please indicate which part needs to be improved.
 
 </select>
 
-
-
-
-
-
-
-
 <label>
 5. 其他意見
 <br>
@@ -759,26 +773,34 @@ placeholder="Please write your comments">
 </textarea>
 
 
+
+
+
 <button 
 class="submitBtn"
-id="submitFeedbackBtn">
+onclick="submitFeedback()">
 
 Submit (提交)
 
 </button>
 
+
+
+
 `;
+
+
 
 app.appendChild(form);
 
-document
-.getElementById("submitFeedbackBtn")
-.onclick = function(){
 
-    alert("Feedback submitted!");
 
-};
+}
+function submitFeedback(){
 
+alert("Feedback submitted!");
+
+}
 showCategories();
 </script>
 
