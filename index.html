@@ -713,6 +713,7 @@ async function submitFeedback(){
   const improvement = document.getElementById("improvement").value;
   const comments = document.getElementById("comments").value;
 
+
   const { data, error } = await supabaseClient
     .from("feedback")
     .insert([
@@ -723,25 +724,24 @@ async function submitFeedback(){
         improvement: improvement,
         comments: comments
       }
-    ]);
+    ])
+    .select();
+
+
+  console.log("Insert data:", data);
+  console.log("Insert error:", error);
 
 
   if(error){
 
-    console.error("Supabase error:", error);
-    alert("Submit failed");
+    alert("Submit failed. Check console.");
 
   } else {
 
     alert("Feedback submitted!");
 
-    console.log("Saved:", data);
-
-    // clear form after submit
-    document.getElementById("projectName").value = "";
-    document.getElementById("comments").value = "";
-
   }
+
 }
 showCategories();
 </script>
