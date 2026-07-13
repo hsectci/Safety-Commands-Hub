@@ -365,7 +365,7 @@ const categories = [
 ];
 
 const app = document.getElementById("app");
-const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co";
 
 const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
 
@@ -396,34 +396,27 @@ function similarity(a, b) {
 
   return match / longer.length;
 }
-function showCategories() {
-  app.innerHTML = "<h2>Categories (選擇類別)</h2>";
-
-  categories.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.className = "btn category";
-
-    btn.innerHTML = `
-      <img src="icons/${cat.icon}" class="catIcon">
-      <span>${cat.name}</span>
-    `;
-
-    btn.onclick = () => {
-      if (cat.key === "feedback") {
-
-        showFeedback();
-
-      }
-
-      else if (cat.sub) {
-        showSubCategories(cat);
-      } else {
-        showWords(cat.key, cat.name);
-      }
-    };
-
-    app.appendChild(btn);
+function showSubCategories(cat){
+ app.innerHTML = "";
+ const back = document.createElement("button");
+ back.className = "btn";
+ back.innerText = "← Back (回上一頁)";
+ back.onclick = showCategories;
+ app.appendChild(back);
+ const h = document.createElement("h2");
+  h.innerText = cat.name;
+  app.appendChild(h);
+  cat.sub.forEach(s=>{
+ const btn = document.createElement("button");
+  btn.className = "btn category";
+  btn.innerText = s.name;
+  btn.onclick = ()=>{
+  showWords(cat.key, s.name, s.key);
+ };
+ app.appendChild(btn);
   });
+
+
 }
 
 function showWords(catKey, title, subKey = null) {
