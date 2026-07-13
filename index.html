@@ -734,9 +734,10 @@ async function submitFeedback(){
 
   if(error){
 
-    alert("Submit failed. Check console.");
+    console.error("Supabase error:", error);
+    alert(error.message);
 
-  } else {
+} else {
 
     alert("Feedback submitted!");
 
