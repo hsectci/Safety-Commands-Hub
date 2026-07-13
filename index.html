@@ -397,104 +397,141 @@ function similarity(a, b) {
   return match / longer.length;
 }
 function showSubCategories(cat){
- app.innerHTML = "";
- const back = document.createElement("button");
- back.className = "btn";
- back.innerText = "← Back (回上一頁)";
- back.onclick = showCategories;
- app.appendChild(back);
- const h = document.createElement("h2");
-  h.innerText = cat.name;
-  app.appendChild(h);
-  cat.sub.forEach(s=>{
- const btn = document.createElement("button");
-  btn.className = "btn category";
-  btn.innerText = s.name;
-  btn.onclick = ()=>{
-  showWords(cat.key, s.name, s.key);
- };
- app.appendChild(btn);
-  });
+    app.innerHTML = "";
+    const back = document.createElement("button");
+    back.className = "btn";
+    back.innerText = "← Back (回上一頁)";
+    back.onclick = showCategories;
+    app.appendChild(back);
+    const h = document.createElement("h2");
+    h.innerText = cat.name;
+    app.appendChild(h);
+    cat.sub.forEach(s=>{
 
+        const btn = document.createElement("button");
+
+        btn.className = "btn category";
+        btn.innerText = s.name;
+
+        btn.onclick = ()=>{
+
+            showWords(cat.key, s.name, s.key);
+
+        };
+
+        app.appendChild(btn);
+
+    });
 
 }
-
 function showWords(catKey, title, subKey = null) {
 
-  app.innerHTML = "";
+    app.innerHTML = "";
 
-  // BACK BUTTON
-  const back = document.createElement("button");
-  back.className = "btn";
-  back.id = "backBtn";
-  back.innerText = "← Back (回上一頁)";
-  back.onclick = showCategories;
-  app.appendChild(back);
+    const back = document.createElement("button");
 
-  // TITLE
-  const h = document.createElement("h2");
-  h.innerText = title;
-  app.appendChild(h);
+    back.className = "btn";
+    back.id = "backBtn";
+    back.innerText = "← Back (回上一頁)";
 
-  // FILTER DATA (ONLY ONCE)
-  const items = data.filter(d => {
+    back.onclick = showCategories;
 
-    if (subKey) {
-      return d.cat === catKey && d.sub === subKey;
+    app.appendChild(back);
+
+    const h = document.createElement("h2");
+
+    h.innerText = title;
+
+    app.appendChild(h);
+
+    const items = data.filter(d => {
+        if(subKey){
+
+            return d.cat === catKey && d.sub === subKey;
+
+        }
+
+        return d.cat === catKey;
+
+
+    });
+    items.forEach(item=>{
+        const container = document.createElement("div");
+
+        container.className = "btn word";
+        container.innerHTML = `
+
+        <button class="heartBtn">
+
+        ⭐ <span id="heart-${item.id || 0}">0</span>
+
+        </button>
+
+
+        <div><b>${item.en}</b></div>
+
+        <div>${item.cn || ""}</div>
+
+        <div>${item.th}</div>
+
+        <div>${item.pn}</div>
+
+        `;
+
+        const audio = document.createElement("audio");
+
+        audio.src = "MP3/" + item.audio;
+
+        audio.controls = true;
+
+        container.appendChild(audio);
+
+        app.appendChild(container);
+
+        const heartBtn = container.querySelector(".heartBtn");
+
+
+        heartBtn.onclick = ()=>{
+
+            addHeart(item.id);
+
+        };
+
+
+    });
+
+
+}
+
+document.getElementById("searchBox").addEventListener("input", function(){
+
+
+    const query = this.value.toLowerCase().trim();
+
+
+
+    if(!query){
+
+        showCategories();
+
+        return;
+
     }
 
-    return d.cat === catKey;
+    const results = data.filter(item=>{
 
-  });
 
-  // SHOW ITEMS
-  items.forEach(item => {
-    const container = document.createElement("div");
-    container.className = "btn word";
+        const text = getSearchText(item);
 
-    container.innerHTML = `
+        return text.includes(query);
 
-    <button class="heartBtn">
-      ⭐ <span id="heart-${item.id}">0</span>
-      </button>
-      <div><b>${item.en}</b></div>
-      <div>${item.cn || ""}</div>
-      <div>${item.th}</div>
-      <div>${item.pn}</div>
 
-      
-    `;
+    });
 
-    const audio = document.createElement("audio");
-    audio.src = "MP3/" + item.audio;
-    audio.controls = true;
 
-    container.appendChild(audio);
-    app.appendChild(container);
+    showSearchResults(results);
 
-    const heartBtn = container.querySelector(".heartBtn");
 
-heartBtn.onclick = ()=>{
-
-  addHeart(item.id);
-
-};
-  });
-}
-document.getElementById("searchBox").addEventListener("input", function () {
-  const query = this.value.toLowerCase().trim();
-
-  if (!query) {
-    showCategories();
-    return;
-  }
-
-  const results = data.filter(item => {
-  const text = getSearchText(item);
-  return text.includes(query);
-  });
-
-  showSearchResults(results);
 });
 function showSearchResults(results) {
   app.innerHTML = "";
