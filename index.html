@@ -525,7 +525,7 @@ function showSearchResults(results) {
     app.appendChild(container);
   });
 }
-function showSubCategories(cat){
+
 
     app.innerHTML = "";
 
@@ -552,6 +552,7 @@ function showSubCategories(cat){
         app.appendChild(btn);
 
     });
+}
 function addHeart(id){
 
   let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
