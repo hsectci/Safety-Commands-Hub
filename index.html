@@ -840,9 +840,6 @@ placeholder="Please write your comments">
 </textarea>
 
 
-
-
-
 <button 
 class="submitBtn"
 onclick="submitFeedback()">
@@ -863,11 +860,11 @@ app.appendChild(form);
 
 
 }
-function submitFeedback(){
+window.submitFeedback = function(){
 
-alert("Feedback submitted!");
+    alert("Feedback submitted!");
 
-}
+};
 showCategories();
 </script>
 
