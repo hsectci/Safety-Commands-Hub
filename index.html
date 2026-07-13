@@ -425,7 +425,6 @@ function showCategories() {
     app.appendChild(btn);
   });
 }
-
 function showWords(catKey, title, subKey = null) {
 
   app.innerHTML = "";
@@ -503,6 +502,7 @@ document.getElementById("searchBox").addEventListener("input", function () {
 
   showSearchResults(results);
 });
+}
 function showSearchResults(results) {
   app.innerHTML = "";
 
@@ -532,33 +532,7 @@ function showSearchResults(results) {
     app.appendChild(container);
   });
 }
-function showSubCategories(cat){
 
-    app.innerHTML = "";
-
-    const back = document.createElement("button");
-    back.className = "btn";
-    back.innerText = "← Back (回上一頁)";
-    back.onclick = showCategories;
-    app.appendChild(back);
-
-    const h = document.createElement("h2");
-    h.innerText = cat.name;
-    app.appendChild(h);
-
-    cat.sub.forEach(s=>{
-
-        const btn = document.createElement("button");
-        btn.className = "btn category";
-        btn.innerText = s.name;
-
-        btn.onclick = ()=>{
-            showWords(cat.key, s.name, s.key);
-        };
-
-        app.appendChild(btn);
-
-    });
 function addHeart(id){
 
   let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
@@ -571,56 +545,6 @@ function addHeart(id){
   );
 
   document.getElementById("heart-"+id).innerText = hearts[id];
-}
-}
-function showSubCategories(cat){
-
-
-    app.innerHTML = "";
-
-
-    const back = document.createElement("button");
-
-    back.className = "btn";
-
-    back.innerText = "← Back (回上一頁)";
-
-    back.onclick = showCategories;
-
-    app.appendChild(back);
-
-
-
-    const h = document.createElement("h2");
-
-    h.innerText = cat.name;
-
-    app.appendChild(h);
-
-    cat.sub.forEach(s=>{
-
-
-        const btn = document.createElement("button");
-
-
-        btn.className = "btn category";
-
-
-        btn.innerText = s.name;
-
-
-
-        btn.onclick = ()=>{
-
-            showWords(cat.key, s.name, s.key);
-
-        };
-
-
-        app.appendChild(btn);
-
-    });
-
 
 }
 function showFeedback(){
@@ -655,8 +579,6 @@ function showFeedback(){
 
 
   form.className = "feedbackForm";
-
-
 
   form.innerHTML = `
 
@@ -751,7 +673,6 @@ Please indicate which part needs to be improved.
 其他意見 Additional comments
 </option>
 
-
 </select>
 
 <label>
@@ -759,8 +680,6 @@ Please indicate which part needs to be improved.
 <br>
 Additional comments
 </label>
-
-
 
 <textarea
 
@@ -772,10 +691,6 @@ placeholder="Please write your comments">
 
 </textarea>
 
-
-
-
-
 <button 
 class="submitBtn"
 onclick="submitFeedback()">
@@ -785,14 +700,10 @@ Submit (提交)
 </button>
 
 
-
-
 `;
 
 
-
 app.appendChild(form);
-
 
 
 }
