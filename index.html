@@ -707,11 +707,22 @@ app.appendChild(form);
 }
 async function submitFeedback(){
 
+  console.log("Submit button clicked");
+
   const projectName = document.getElementById("projectName").value;
   const helpful = document.getElementById("helpful").value;
   const easyUse = document.getElementById("easyUse").value;
   const improvement = document.getElementById("improvement").value;
   const comments = document.getElementById("comments").value;
+
+
+  console.log({
+    projectName,
+    helpful,
+    easyUse,
+    improvement,
+    comments
+  });
 
 
   const { data, error } = await supabaseClient
@@ -728,16 +739,15 @@ async function submitFeedback(){
     .select();
 
 
-  console.log("Insert data:", data);
+  console.log("Insert result:", data);
   console.log("Insert error:", error);
 
 
   if(error){
 
-    console.error("Supabase error:", error);
-    alert(error.message);
+    alert("Submit failed");
 
-} else {
+  }else{
 
     alert("Feedback submitted!");
 
