@@ -81,7 +81,9 @@ h1 {
 
   display: flex;
   flex-direction: column;   
-  gap: 6px;    
+  gap: 6px;
+
+  position: relative;    
 }
 
 /* Back button */
@@ -126,6 +128,155 @@ audio {
   align-items: center;
   justify-items: left ;
 }
+.heartBtn {
+
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  padding: 5px;
+
+}
+
+.heartCount {
+
+  font-size: 14px;
+  color: #555;
+
+}
+/* Feedback Form */
+
+.feedbackForm {
+
+  background: white;
+
+  color: black;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+}
+
+
+
+.feedbackTitle {
+
+  text-align: center;
+
+  font-size: 24px;
+
+  font-weight: bold;
+
+  color: #1f2a44;
+
+  margin-bottom: 15px;
+
+}
+
+
+
+.feedbackForm label {
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  color: #000000;
+
+  margin-top: 12px;
+
+}
+
+
+
+.feedbackForm input,
+
+.feedbackForm select,
+
+.feedbackForm textarea {
+
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  font-size: 16px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ccc;
+
+  background: #f8f9fa;
+
+
+}
+
+
+
+.feedbackForm select {
+
+  cursor: pointer;
+
+}
+
+
+
+.feedbackForm textarea {
+
+  min-height: 100px;
+
+}
+
+
+
+.submitBtn {
+
+
+  margin-top: 20px;
+
+  background: #1f2a44;
+
+  color: white;
+
+  border: none;
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+
+}
+
+
+
+.submitBtn:active {
+
+  transform: scale(0.97);
+
+}
 </style>
 </head>
 
@@ -134,7 +285,7 @@ audio {
 <h1>Safety Commands Hub</h1>
 
 <div id="app"></div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -180,6 +331,21 @@ const data = [
   { cat: "lifting", sub: "emerlifting", en: "英文: Machine is malfunctioning (Out of order)", th: "泰文: เครื่องขัดข้อง", cn: "中文: 機器故障", pn: "Pinyin: kruang(機器) kat- kong (故障)" , audio: "เครื่องขัดข้อง.mp3" },
   { cat: "lifting", sub: "emerlifting", en: "英文: Overload", th: "泰文: น้ำหนักเกิน", cn: "中文: 超載", pn: "Pinyin: nam-nak(重量) goen(太多)" , audio: "น้ำหนักเกิน.mp3" },
   { cat: "lifting", sub: "emerlifting", en: "英文: Machine is unlevel", th: "泰文: เครื่องไม่ได้ระดับ", cn: "中文: 機器不水平", pn: "Pinyin: kruang (機器)mai-dai(不) ra-dap (水平)" , audio: "เครื่องไม่ได้ระดับ.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Watch your head", th: "泰文: ระวังหัว", cn: "中文: 小心碰頭", pn: "Pinyin: ra-wang (小心) hua(頭)" , audio: "ระวังหัว.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Watch your hands", th: "泰文: ระวังมือ", cn: "中文: 小心手部", pn: "Pinyin: ra-wang(小心) mue(手)" , audio: "ระวังมือ.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Watch your step", th: "泰文: ระวังตก", cn: "中文: 小心墜落", pn: "Pinyin: ra-wang (小心)tok(掉下來)" , audio: "ระวังตก.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Do not climb the platform guardrail", th: "泰文: ห้ามปีนราวกั้นกระเช้า", cn: "中文: 小心墜落", pn: "Pinyin: ham(別) peen(爬) rao-kan-grachao(工作平台護欄)" , audio: "ห้ามปีนราวกั้นกระเช้า.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Jib boom up", th: "泰文: จิ๊บบูมยกขึ้น", cn: "中文: 副臂上升", pn: "Pinyin: jip-boom (副臂)yok-khuen(上升)" , audio: "จิ๊บบูมยกขึ้น.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Jib boom down", th: "泰文: จิ๊บบูมลดลง", cn: "中文: 副臂下降", pn: "Pinyin: jip-boom  (副臂)lod-long (下降)" , audio: "จิ๊บบูมลดลง.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Main boom up", th: "泰文: บูมหลักยกขึ้น", cn: "中文: 主臂上升", pn: "Pinyin: boom -lak (主臂)yok-khuen(上升)" , audio: "บูมหลักยกขึ้น.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Main boom down", th: "泰文: บูมหลักลดลง", cn: "中文: 主臂下降", pn: "Pinyin: boom-lak (主臂)lot-long(下降)" , audio: "บูมหลักลดลง.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Drive forward", th: "泰文: เดินหน้า", cn: "中文: 前進", pn: "Pinyin: dern-na(前進)" , audio: "เดินหน้า.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Drive backward", th: "泰文: ถอยหลัง", cn: "中文: 後退", pn: "Pinyin: thoi-lang(後退)" , audio: "ถอยหลัง.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Turn left", th: "泰文: เลี้ยวซ้าย", cn: "中文: 向左轉", pn: "Pinyin: liao(向) sai(左轉)" , audio: "เลี้ยวซ้าย.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Turn right", th: "泰文: เลี้ยวขวา", cn: "中文: 向右轉", pn: "Pinyin: liao(向) khwa(右轉)" , audio: "เลี้ยวขวา.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Lower platform", th: "泰文: ลดกระเช้า", cn: "中文: 平台下降", pn: "Pinyin: lod(下降)grachao(平台)" , audio: "ลดกระเช้า.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Raise platform", th: "泰文: ยกกระเช้า", cn: "中文: 平台上升", pn: "Pinyin: yok(上升) grachao(平台)" , audio: "ยกกระเช้า.mp3" },
+  { cat: "lifting", sub: "MEWP", en: "英文: Hook on", th: "泰文: เกี่ยวตะขอด้วย", cn: "中文: 掛上吊鉤", pn: "Pinyin: kiao(掛上) ta-kor(吊鉤) duay" , audio: "เกี่ยวตะขอด้วย.mp3" },
 ];
 
 const categories = [
@@ -188,15 +354,26 @@ const categories = [
         sub:[{key: "bflifting", name: "Preparation (吊裝前準備)"},
              {key: "comlifting", name: "Crane Operation（起重機操作）"},
              {key: "MEWP", name: "MEWP Operation (高空作業平台操作)"},
-             {key: "emerlifting", name: "Emergency Commands（緊急與安全指令）"}
+             {key: "emerlifting", name: "Emergency Commands（緊急與安全指令）"},
+
                      
   ]     
   },
   { key: "emergency", name: "Emergency (緊急停止)", icon: "alert2.png" },
   { key: "com", name: "Compliment (讚美)", icon: "like2.png" },
+  { key: "feedback", name: "Feedback (意見回饋)", icon: "like2.png" }
 ];
 
 const app = document.getElementById("app");
+const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
+
+const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
+
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 function getSearchText(item) {
   return (
     item.en + " " +
@@ -232,7 +409,13 @@ function showCategories() {
     `;
 
     btn.onclick = () => {
-      if (cat.sub) {
+      if (cat.key === "feedback") {
+
+        showFeedback();
+
+      }
+
+      else if (cat.sub) {
         showSubCategories(cat);
       } else {
         showWords(cat.key, cat.name);
@@ -277,10 +460,16 @@ function showWords(catKey, title, subKey = null) {
     container.className = "btn word";
 
     container.innerHTML = `
+
+    <button class="heartBtn">
+      ⭐ <span id="heart-${item.id}">0</span>
+      </button>
       <div><b>${item.en}</b></div>
       <div>${item.cn || ""}</div>
       <div>${item.th}</div>
       <div>${item.pn}</div>
+
+      
     `;
 
     const audio = document.createElement("audio");
@@ -289,6 +478,14 @@ function showWords(catKey, title, subKey = null) {
 
     container.appendChild(audio);
     app.appendChild(container);
+
+    const heartBtn = container.querySelector(".heartBtn");
+
+heartBtn.onclick = ()=>{
+
+  addHeart(item.id);
+
+};
   });
 }
 document.getElementById("searchBox").addEventListener("input", function () {
@@ -362,6 +559,277 @@ function showSubCategories(cat){
         app.appendChild(btn);
 
     });
+function addHeart(id){
+
+  let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
+
+  hearts[id] = (hearts[id] || 0) + 1;
+
+  localStorage.setItem(
+    "hearts",
+    JSON.stringify(hearts)
+  );
+
+  document.getElementById("heart-"+id).innerText = hearts[id];
+}
+}
+function showSubCategories(cat){
+
+
+    app.innerHTML = "";
+
+
+    const back = document.createElement("button");
+
+    back.className = "btn";
+
+    back.innerText = "← Back (回上一頁)";
+
+    back.onclick = showCategories;
+
+    app.appendChild(back);
+
+
+
+    const h = document.createElement("h2");
+
+    h.innerText = cat.name;
+
+    app.appendChild(h);
+
+
+
+    cat.sub.forEach(s=>{
+
+
+        const btn = document.createElement("button");
+
+
+        btn.className = "btn category";
+
+
+        btn.innerText = s.name;
+
+
+
+        btn.onclick = ()=>{
+
+            showWords(cat.key, s.name, s.key);
+
+        };
+
+
+        app.appendChild(btn);
+
+
+
+    });
+
+
+}
+function showFeedback(){
+
+
+  app.innerHTML = "";
+
+
+  // Back button
+
+  const back = document.createElement("button");
+
+  back.className = "btn";
+
+  back.id = "backBtn";
+
+  back.innerText = "← Back (回上一頁)";
+
+  back.onclick = showCategories;
+
+  app.appendChild(back);
+
+
+
+  // Title
+
+  const title = document.createElement("h2");
+  title.className = "feedbackTitle";
+
+
+  app.appendChild(title);
+
+
+
+
+
+  const form = document.createElement("div");
+
+
+  form.className = "feedbackForm";
+
+
+
+  form.innerHTML = `
+
+
+
+<label>
+1. 專案名稱 (Project name)
+</label>
+
+
+<input 
+type="text"
+id="projectName"
+placeholder="Enter project name"
+>
+
+
+
+
+<label>
+2. 「現場簡易安衛用語」工具是否實用？
+<br>
+Is the “Simple Safety Language for Field Use” helpful?
+</label>
+
+
+
+<select id="helpful">
+
+
+<option>
+非常實用且容易使用 Very useful
+</option>
+
+
+<option>
+尚可 Acceptable
+</option>
+
+
+<option>
+需要改善 Needs Improvement
+</option>
+
+
+</select>
+
+
+
+
+
+
+<label>
+3. 「現場簡易安衛用語」工具是否容易使用?
+<br>
+Is the “Simple Safety Language for Field Use” easy to use?
+</label>
+
+
+
+
+<select id="easyUse">
+
+
+<option>
+非常實用且容易使用 Very useful
+</option>
+
+
+<option>
+尚可 Acceptable
+</option>
+
+
+<option>
+需要改善 Needs Improvement
+</option>
+
+
+</select>
+
+
+
+
+
+
+
+<label>
+4. 請進一步說明需要改善的部分。
+<br>
+Please indicate which part needs to be improved.
+</label>
+
+
+
+
+<select id="improvement">
+
+
+<option>
+加更多語言 Add more languages
+</option>
+
+
+<option>
+需要更多詞語 Need more words
+</option>
+
+
+<option>
+其他意見 Additional comments
+</option>
+
+
+</select>
+
+
+
+
+
+
+
+
+<label>
+5. 其他意見
+<br>
+Additional comments
+</label>
+
+
+
+<textarea
+
+id="comments"
+
+rows="5"
+
+placeholder="Please write your comments">
+
+</textarea>
+
+
+
+
+
+<button 
+class="submitBtn"
+onclick="submitFeedback()">
+
+Submit (提交)
+
+</button>
+
+
+
+
+`;
+
+
+
+app.appendChild(form);
+
+
 
 }
 showCategories();
