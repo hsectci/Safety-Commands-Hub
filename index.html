@@ -692,7 +692,7 @@ placeholder="Please write your comments">
 
 <button 
 class="submitBtn"
-onclick="testfeedback()">
+onclick="submitFeedback()">
 
 Submit (提交)
 
@@ -703,10 +703,43 @@ Submit (提交)
 app.appendChild(form);
 
 }
-function testfeedback(){
+async function submitFeedback(){
+
+  const projectName = document.getElementById("projectName").value;
+  const helpful = document.getElementById("helpful").value;
+  const easyUse = document.getElementById("easyUse").value;
+  const improvement = document.getElementById("improvement").value;
+  const comments = document.getElementById("comments").value;
+
+  const { data, error } = await supabaseClient
+    .from("feedback")
+    .insert([
+      {
+        project_name: projectName,
+        helpful: helpful,
+        easy_use: easyUse,
+        improvement: improvement,
+        comments: comments
+      }
+    ]);
+
+
+  if(error){
+
+    console.error("Supabase error:", error);
+    alert("Submit failed");
+
+  } else {
 
     alert("Feedback submitted!");
 
+    console.log("Saved:", data);
+
+    // clear form after submit
+    document.getElementById("projectName").value = "";
+    document.getElementById("comments").value = "";
+
+  }
 }
 showCategories();
 </script>
