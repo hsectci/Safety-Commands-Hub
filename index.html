@@ -761,29 +761,24 @@ placeholder="Please write your comments">
 
 <button 
 class="submitBtn"
-onclick="submitFeedback()">
+id="submitFeedbackBtn">
 
 Submit (提交)
 
 </button>
 
-
-
-
 `;
-
-
 
 app.appendChild(form);
 
-
-
-}
-window.submitFeedback = function(){
+document
+.getElementById("submitFeedbackBtn")
+.onclick = function(){
 
     alert("Feedback submitted!");
 
 };
+
 showCategories();
 </script>
 
