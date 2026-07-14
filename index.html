@@ -724,6 +724,25 @@ async function submitFeedback(){
     comments
   });
 
+  async function submitFeedback(){
+
+  console.log("Submit button clicked");
+
+  const projectName = document.getElementById("projectName").value;
+  const helpful = document.getElementById("helpful").value;
+  const easyUse = document.getElementById("easyUse").value;
+  const improvement = document.getElementById("improvement").value;
+  const comments = document.getElementById("comments").value;
+
+
+  console.log({
+    projectName,
+    helpful,
+    easyUse,
+    improvement,
+    comments
+  });
+
 
   const { data, error } = await supabaseClient
     .from("feedback")
@@ -738,29 +757,35 @@ async function submitFeedback(){
     ])
     .select();
 
-console.log("Insert result:", data);
 
-if (error) {
+  console.log("Insert result:", data);
 
-  console.error("Full error:", error);
-  console.log("Code:", error.code);
-  console.log("Message:", error.message);
-  console.log("Details:", error.details);
-  console.log("Hint:", error.hint);
 
-  alert(
-    "Submit failed\n\n" +
-    "Code: " + error.code + "\n" +
-    "Message: " + error.message
-  );
+  if (error) {
 
-} else {
+    console.error("Full error:", error);
+    console.log("Code:", error.code);
+    console.log("Message:", error.message);
+    console.log("Details:", error.details);
+    console.log("Hint:", error.hint);
 
-  console.log("Insert successful:", data);
-  alert("Feedback submitted!");
+    alert(
+      "Submit failed\n\n" +
+      "Code: " + error.code + "\n" +
+      "Message: " + error.message
+    );
 
-}
-showCategories();
+  } else {
+
+    console.log("Insert successful:", data);
+    alert("Feedback submitted!");
+
+  }
+
+  showCategories();
+
+}   
+
 </script>
 
 </body>
