@@ -300,9 +300,12 @@ audio {
   }
 const data = [
   { cat: "ppe", en: "英文: Wear safety helmet", th: "泰文: ใส่หมวกด้วย", cn: "中文: 請戴安全帽", pn: "Pinyin: sai (帶) muak (帽子) duay", audio: "helmet.mp3" },
+  { cat: "ppe", en: "英文: Fasten the chin strap", th: "泰文: คาดสายรัดคาง", cn: "中文: 繫好下巴帶", pn: "Pinyin: khat(繫好) sai-rat-khang(下巴帶)", audio: "คาดสายรัดคาง.mp3" },
   { cat: "ppe", en: "英文: Wear your safey harness", th: "泰文: ใส่เข็มขัดนิรภัยด้วย", cn: "中文: 請配戴安全帶",pn: "Pinyin: sai (帶) khem-khat (帶子) ni-ra-phai (安全)duay" , audio: "safety_harness.mp3" },
   { cat: "ppe", en: "英文: Hook your safety harness", th: "泰文: เกี่ยวตะขอด้วย", cn: "中文: 勾安全帶!", pn: "Pinyin: giao (勾) ta-kor (安全鉤) duay" , audio: "hook.mp3" },
   { cat: "ppe", en: "英文: Wear your safety shoe", th: "泰文: ใส่ร้องเท้านิรภัยด้วย", cn: "中文: 請穿安全鞋!", pn: "Pinyin: sai (穿) rong-thao (鞋子) ni-ra-phai (安全)duay" , audio: "safety_shoe.mp3" },
+  { cat: "ppe", en: "英文: Wear a face mask", th: "泰文: ใส่หน้ากาก", cn: "中文: 戴上防護面罩", pn: "Pinyin: sai(戴上) na-kaak(防護面罩)", audio: "ใส่หน้ากาก.mp3" },
+  { cat: "ppe", en: "英文: Wear gloves", th: "泰文: ใส่ถุงมือ", cn: "中文: 戴上手套", pn: "Pinyin: sai(戴上) thung-mue(手套)", audio: "ใส่ถุงมือ.mp3" },
   { cat: "emergency", en: "英文: Get down now, it is not safe", th: "泰文: ลงมามันอันตราย", cn: "中文: 下來! 很危險", pn: "Pinyin: long-ma (下來) man an-ta-rai (危險)" , audio: "dangerous.mp3" },
   { cat: "emergency", en: "英文: Step away from that area", th: "泰文: ออกมา อย่าไปยืนตรงนั้น", cn: "中文: 你過來！不要站在那邊", pn: "Pinyin: ok mar (過來), ya (不要) pai yuen (站在) tong nan(那邊)" , audio: "step_away.mp3" },
   { cat: "emergency", en: "英文: Stop!", th: "泰文: หยุดทำเดี๋ยวนี้", cn: "中文: 停止！", pn: "Pinyin: yut (停止！) tham diao nee" , audio: "stop1.mp3" },
@@ -346,22 +349,68 @@ const data = [
   { cat: "lifting", sub: "MEWP", en: "英文: Lower platform", th: "泰文: ลดกระเช้า", cn: "中文: 平台下降", pn: "Pinyin: lod(下降)grachao(平台)" , audio: "ลดกระเช้า.mp3" },
   { cat: "lifting", sub: "MEWP", en: "英文: Raise platform", th: "泰文: ยกกระเช้า", cn: "中文: 平台上升", pn: "Pinyin: yok(上升) grachao(平台)" , audio: "ยกกระเช้า.mp3" },
   { cat: "lifting", sub: "MEWP", en: "英文: Hook on", th: "泰文: เกี่ยวตะขอด้วย", cn: "中文: 掛上吊鉤", pn: "Pinyin: kiao(掛上) ta-kor(吊鉤) duay" , audio: "เกี่ยวตะขอด้วย.mp3" },
+  { cat: "material", en: "英文: Beware of falling objects", th: "泰文: ระวังของล้ม", cn: "中文: 小心物品掉落", pn: "Pinyin: ra-wang(小心) khong(物品) lom(掉落)", audio: "ระวังของล้ม.mp3" },
+  { cat: "material", en: "英文: Sloped ground", th: "泰文: พื้นเอียง", cn: "中文: 地面傾斜", pn: "Pinyin: phuen(地面) iang(傾斜)", audio: "พื้นเอียง.mp3" },
+  { cat: "material", en: "英文: Too high", th: "泰文: สูงเกินไป", cn: "中文: 高度過高", pn: "Pinyin: sung(高度) koen-pai(過高)", audio: "สูงเกินไป.mp3" },
+  { cat: "material", en: "英文: Wooden block", th: "泰文: บล็อกไม้", cn: "中文: 木墊塊", pn: "Pinyin: block(墊塊) mai(木)", audio: "บล็อกไม้.mp3" },
+  { cat: "material", en: "英文: Tie with rope", th: "泰文: ใช้เชือกมัด", cn: "中文: 使用繩索綁緊", pn: "Pinyin: chai(使用) chueak(繩索) mat(綁緊)", audio: "ใช้เชือกมัด.mp3" },
+  { cat: "material", en: "英文: Cover with net", th: "泰文: ใช้ตาข่ายคลุม", cn: "中文: 使用網子覆蓋", pn: "Pinyin: chai(使用) ta-khai(網子) khlum(覆蓋)", audio: "ใช้ตาข่ายคลุม.mp3" },
+  { cat: "material", en: "英文: Place vertically", th: "泰文: วางแนวตั้ง", cn: "中文: 垂直放置", pn: "Pinyin: wang(放置) naew-tang(垂直)", audio: "วางแนวตั้ง.mp3" },
+  { cat: "material", en: "英文: Place horizontally", th: "泰文: วางแนวนอน", cn: "中文: 水平放置", pn: "Pinyin: wang(放置) naew-non(水平)", audio: "วางแนวนอน.mp3" },
+  { cat: "material", en: "英文: Arrange properly", th: "泰文: จัดของให้เรียบร้อย", cn: "中文: 整理整齊", pn: "Pinyin: jat(整理) khong(物品) hai(將) riap-roi(整齊)", audio: "จัดของให้เรียบร้อย.mp3" },
+  { cat: "WAH", en: "英文: Hook the safety harness", th: "泰文: เกี่ยวตะขอ", cn: "中文: 掛上安全鉤", pn: "Pinyin: giao(掛上) ta-kho(安全鉤)", audio: "เกี่ยวตะขอ.mp3" },
+  { cat: "WAH", en: "英文: Install lifeline rope", th: "泰文: ติดตั้งเชือกช่วยชีวิต", cn: "中文: 安裝生命線", pn: "Pinyin: tid-tang(安裝) chueak-chuai-chiwit(生命線)", audio: "ติดตั้งเชือกช่วยชีวิต.mp3" },
+  { cat: "WAH", en: "英文: Secure the ladder", th: "泰文: ล็อกบันไดให้แน่น", cn: "中文: 固定梯子", pn: "Pinyin: lok(固定) ban-dai(梯子) hai-naen(穩固)", audio: "ล็อกบันไดให้แน่น.mp3" },
+  { cat: "WAH", en: "英文: Damaged ladder", th: "泰文: บันไดชำรุด", cn: "中文: 損壞的梯子", pn: "Pinyin: ban-dai(梯子) cham-rut(損壞)", audio: "บันไดชำรุด.mp3" },
+  { cat: "WAH", en: "英文: Hold the ladder", th: "泰文: จับบันไดไว้", cn: "中文: 扶好梯子", pn: "Pinyin: chap(扶好) ban-dai(梯子) wai(保持)", audio: "จับบันไดไว้.mp3" },
+  { cat: "WAH", en: "英文: Move the ladder to a new position", th: "泰文: ขยับบันไดใหม่", cn: "中文: 重新移動梯子", pn: "Pinyin: kha-yap(移動) ban-dai(梯子) mai(重新)", audio: "ขยับบันไดใหม่.mp3" },
+  { cat: "WAH", en: "英文: Do not overreach", th: "泰文: อย่าเอื้อมตัว", cn: "中文: 不要伸手", pn: "Pinyin: ya(不要) ueam-tua(伸手)", audio: "อย่าเอื้อมตัว.mp3" },
+  { cat: "Fire", en: "英文: Fire extinguisher", th: "泰文: ถังดับเพลิง", cn: "中文: 滅火器", pn: "Pinyin: thang(器) dap-phloeng(滅火)", audio: "ถังดับเพลิง.mp3" },
+  { cat: "Fire", en: "英文: Fire watcher", th: "泰文: ผู้ควบคุมไฟ", cn: "中文: 防火監視人員", pn: "Pinyin: phu-khuap-khum(監視人員) fai(火)", audio: "ผู้ควบคุมไฟ.mp3" },
+  { cat: "Fire", en: "英文: Fire blanket", th: "泰文: ผ้าคลุมไฟ", cn: "中文: 防火毯", pn: "Pinyin: pha-khlum(毯) fai(火)", audio: "ผ้าคลุมไฟ.mp3" },
+  { cat: "Fire", en: "英文: Gas detector", th: "泰文: เครื่องตรวจวัดก๊าซ", cn: "中文: 氣體偵測器", pn: "Pinyin: khrueang(器) truat-wat(偵測) gas(氣體)", audio: "เครื่องตรวจวัดก๊าซ.mp3" },
+  { cat: "Fire", en: "英文: Install fire barrier", th: "泰文: ติดตั้งแนวกั้นไฟ", cn: "中文: 設置防火隔離區", pn: "Pinyin: tid-tang(設置) naeokan(隔離區) fai(火)", audio: "ติดตั้งแนวกั้นไฟ.mp3" },
+  { cat: "Fire", en: "英文: Beware of sparks", th: "泰文: ระวังประกายไฟ", cn: "中文: 小心火花", pn: "Pinyin: ra-wang(小心) pra-kai-fai(火花)", audio: "ระวังประกายไฟ.mp3" },
+  { cat: "Fire", en: "英文: Fire", th: "泰文: ไฟไหม้", cn: "中文: 火災", pn: "Pinyin: fai(火) mai(災)", audio: "ไฟไหม้.mp3" },
+  { cat: "Fire", en: "英文: Move flammable materials", th: "泰文: ย้ายวัสดุไวไฟ", cn: "中文: 移除易燃物", pn: "Pinyin: yai(移除) wat-sa-du(物品) wai-fai(易燃物)", audio: "ย้ายวัสดุไวไฟ.mp3" },
+  { cat: "Fire", en: "英文: Need ventilation", th: "泰文: ต้องมีการระบายอากาศ", cn: "中文: 必須保持通風", pn: "Pinyin: tong-mi(必須) kan-ra-bai-akat(通風)", audio: "ต้องมีการระบายอากาศ.mp3" },
+  { cat: "Fire", en: "英文: Use cutting disc correctly", th: "泰文: ใช้ใบตัดให้ถูกต้อง", cn: "中文: 正確使用切割片", pn: "Pinyin: chai(使用) bai-tat(切割片) thuk-tong(正確)", audio: "ใช้ใบตัดให้ถูกต้อง.mp3" },
+  { cat: "Fire", en: "英文: Do not tilt gas cylinder", th: "泰文: ห้ามเอียงถังแก๊ส", cn: "中文: 禁止傾斜瓦斯桶", pn: "Pinyin: ham(禁止) iang(傾斜) thang-gas(瓦斯桶)", audio: "ห้ามเอียงถังแก๊ส.mp3" },
+  { cat: "Fire", en: "英文: Flashback arrestor", th: "泰文: อุปกรณ์ป้องกันไฟย้อนกลับ", cn: "中文: 防止回火裝置", pn: "Pinyin: upakon(裝置) pongkan(防止) fai(火) yon-klap(回火)", audio: "อุปกรณ์ป้องกันไฟย้อนกลับ.mp3" },
+  { cat: "Elec", en: "英文: Work permit", th: "泰文: ใบอนุญาตทำงาน", cn: "中文: 工作許可證", pn: "Pinyin: bai(文件) anu-yat(許可) tham-ngan(工作)", audio: "ใบอนุญาตทำงาน.mp3" },
+  { cat: "Elec", en: "英文: Isolate power (Energy isolation)", th: "泰文: ตัดไฟ (ตัดแยกพลังงาน)", cn: "中文: 切斷電源（能源隔離）", pn: "Pinyin: tat(切斷) fai(電源)", audio: "ตัดไฟ.mp3" },
+  { cat: "Elec", en: "英文: Install grounding wire", th: "泰文: ติดตั้งสายดิน", cn: "中文: 安裝接地線", pn: "Pinyin: tid-tang(安裝) sai-din(接地線)", audio: "ติดตั้งสายดิน.mp3" },
+  { cat: "Elec", en: "英文: Damaged electrical wire", th: "泰文: สายไฟชำรุด", cn: "中文: 電線損壞", pn: "Pinyin: sai-fai(電線) cham-rut(損壞)", audio: "สายไฟชำรุด.mp3" },
+  { cat: "Elec", en: "英文: Beware of electric shock", th: "泰文: ระวังไฟช็อต", cn: "中文: 小心觸電", pn: "Pinyin: ra-wang(小心) fai-shot(觸電)", audio: "ระวังไฟช็อต.mp3" },
+  { cat: "Elec", en: "英文: Keep equipment away from water", th: "泰文: วางอุปกรณ์ให้ห่างจากน้ำ", cn: "中文: 設備遠離水源", pn: "Pinyin: wang(放置) upakon(設備) hai-hang-chak(遠離) nam(水)", audio: "วางอุปกรณ์ให้ห่างจากน้ำ.mp3" },
+  { cat: "Elec", en: "英文: Electrical leakage", th: "泰文: ไฟรั่ว", cn: "中文: 漏電", pn: "Pinyin: fai-rua(漏電)", audio: "ไฟรั่ว.mp3" },
+  { cat: "Elec", en: "英文: Electrical insulation", th: "泰文: ฉนวนป้องกันไฟฟ้า", cn: "中文: 絕緣保護", pn: "Pinyin: cha-nuan(絕緣) pong-kan(保護) fai-fa(電)", audio: "ฉนวนป้องกันไฟฟ้า.mp3" },
+  { cat: "Steel", en: "英文: Install lifeline before lifting the beam", th: "泰文: ติดตั้งเชือกช่วยชีวิตก่อนยกบีมขึ้น", cn: "中文: 吊裝樑前安裝生命線", pn: "Pinyin: tid-tang(安裝) chueak-chuai-chiwit(生命線) kon(前) yok(吊裝) beam(樑)", audio: "ติดตั้งเชือกช่วยชีวิตก่อนยกบีมขึ้น.mp3" },
+  { cat: "Steel", en: "英文: Install safety net", th: "泰文: ติดตั้งตาข่ายนิรภัย", cn: "中文: 安裝安全網", pn: "Pinyin: tid-tang(安裝) ta-khai(網子) niraphai(安全)", audio: "ติดตั้งตาข่ายนิรภัย.mp3" },
+  { cat: "Steel", en: "英文: Install guardrail", th: "泰文: ติดตั้งราวกั้น", cn: "中文: 安裝護欄", pn: "Pinyin: tid-tang(安裝) rao-kan(護欄)", audio: "ติดตั้งราวกั้น.mp3" },
+  { cat: "Steel", en: "英文: Hook the safety hook", th: "泰文: เกี่ยวตะขอนิรภัย", cn: "中文: 掛上安全鉤", pn: "Pinyin: giao(掛上) ta-kho(鉤子) niraphai(安全)", audio: "เกี่ยวตะขอนิรภัย.mp3" },
+  { cat: "Steel", en: "英文: Beware of falling equipment", th: "泰文: ระวังอุปกรณ์ตก", cn: "中文: 小心設備掉落", pn: "Pinyin: ra-wang(小心) upakon(設備) tok(掉落)", audio: "ระวังอุปกรณ์ตก.mp3" },
+  { cat: "Steel", en: "英文: Tighten the bolts", th: "泰文: ขันน็อตให้แน่น", cn: "中文: 鎖緊螺栓", pn: "Pinyin: khan-not(鎖緊螺栓) hai-naen(固定)", audio: "ขันน็อตให้แน่น.mp3" },
 ];
 
 const categories = [
   { key: "ppe", name: "PPE (個人防護裝備)", icon: "PPE1.png" },
+  { key: "material", name: "Material Stacking (材料堆放)", icon: "material.png" },
   { key: "lifting", name: "Lifting (吊運)", icon: "crane2.png" ,
         sub:[{key: "bflifting", name: "Preparation (吊裝前準備)"},
              {key: "comlifting", name: "Crane Operation（起重機操作）"},
              {key: "MEWP", name: "MEWP Operation (高空作業平台操作)"},
-             {key: "emerlifting", name: "Emergency Commands（緊急與安全指令）"},
+             {key: "emerlifting", name: "Emergency Commands（緊急與安全指令）"},]
 
-                     
-  ]     
+                        
   },
+  { key: "WAH", name: "Work at Height (高處作業)", icon: "harness.png" },
+  { key: "Fire", name: "Fire Prevention (防火與控制)", icon: "fire.png" },
+  { key: "Elec", name: "Electrocuted (電氣安全)", icon: "elec.png" },
+  { key: "Steel", name: "Steel Structure Work (鋼構工程)", icon: "steel.png" },
   { key: "emergency", name: "Emergency (緊急停止)", icon: "alert2.png" },
   { key: "com", name: "Compliment (讚美)", icon: "like2.png" },
-  { key: "feedback", name: "Feedback (意見回饋)", icon: "like2.png" }
+
 ];
 
 const app = document.getElementById("app");
@@ -462,7 +511,7 @@ function showWords(catKey, title, subKey = null) {
     container.innerHTML = `
 
     <button class="heartBtn">
-      ⭐ <span id="heart-${item.id}">0</span>
+       <span id="heart-${item.id}"></span>
       </button>
       <div><b>${item.en}</b></div>
       <div>${item.cn || ""}</div>
@@ -590,7 +639,6 @@ function showSubCategories(cat){
     app.appendChild(back);
 
 
-
     const h = document.createElement("h2");
 
     h.innerText = cat.name;
@@ -619,8 +667,6 @@ function showSubCategories(cat){
 
 
         app.appendChild(btn);
-
-
 
     });
 
@@ -661,11 +707,7 @@ function showFeedback(){
 
   form.className = "feedbackForm";
 
-
-
   form.innerHTML = `
-
-
 
 <label>
 1. 專案名稱 (Project name)
@@ -684,7 +726,6 @@ placeholder="Enter project name"
 <br>
 Is the “Simple Safety Language for Field Use” helpful?
 </label>
-
 
 
 <select id="helpful">
@@ -741,21 +782,27 @@ Is the “Simple Safety Language for Field Use” easy to use?
 Please indicate which part needs to be improved.
 </label>
 
+
 <select id="improvement">
+
 
 <option>
 加更多語言 Add more languages
 </option>
 
+
 <option>
 需要更多詞語 Need more words
 </option>
+
 
 <option>
 其他意見 Additional comments
 </option>
 
+
 </select>
+
 
 <label>
 5. 其他意見
@@ -775,10 +822,6 @@ placeholder="Please write your comments">
 
 </textarea>
 
-
-
-
-
 <button 
 class="submitBtn"
 onclick="submitFeedback()">
@@ -786,6 +829,7 @@ onclick="submitFeedback()">
 Submit (提交)
 
 </button>
+
 
 `;
 
