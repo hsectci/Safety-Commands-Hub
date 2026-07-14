@@ -1,4 +1,4 @@
-const CACHE_NAME = "safety-commands-hub-v1";
+const CACHE_NAME = "safety-commands-hub-v2";
 
 const FILES_TO_CACHE = [
   "./",
