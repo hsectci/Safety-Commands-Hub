@@ -285,7 +285,7 @@ audio {
 <h1>Safety Commands Hub</h1>
 
 <div id="app"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -365,16 +365,14 @@ const categories = [
 ];
 
 const app = document.getElementById("app");
-const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co";
+const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhenp2aHBia3JxZHJmZmpqcmpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM5MTU5NjEsImV4cCI6MjA5OTQ5MTk2MX0.FDeCpLVNiw-ATOQpYmjyOAkfM-1FuG5ZGqFwTy_FuI4";
+const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
+
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
-  );
-
-console.log("Supabase client:", supabaseClient
 );
 function getSearchText(item) {
   return (
@@ -427,6 +425,7 @@ function showCategories() {
     app.appendChild(btn);
   });
 }
+
 function showWords(catKey, title, subKey = null) {
 
   app.innerHTML = "";
@@ -533,7 +532,33 @@ function showSearchResults(results) {
     app.appendChild(container);
   });
 }
+function showSubCategories(cat){
 
+    app.innerHTML = "";
+
+    const back = document.createElement("button");
+    back.className = "btn";
+    back.innerText = "← Back (回上一頁)";
+    back.onclick = showCategories;
+    app.appendChild(back);
+
+    const h = document.createElement("h2");
+    h.innerText = cat.name;
+    app.appendChild(h);
+
+    cat.sub.forEach(s=>{
+
+        const btn = document.createElement("button");
+        btn.className = "btn category";
+        btn.innerText = s.name;
+
+        btn.onclick = ()=>{
+            showWords(cat.key, s.name, s.key);
+        };
+
+        app.appendChild(btn);
+
+    });
 function addHeart(id){
 
   let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
@@ -546,6 +571,59 @@ function addHeart(id){
   );
 
   document.getElementById("heart-"+id).innerText = hearts[id];
+}
+}
+function showSubCategories(cat){
+
+
+    app.innerHTML = "";
+
+
+    const back = document.createElement("button");
+
+    back.className = "btn";
+
+    back.innerText = "← Back (回上一頁)";
+
+    back.onclick = showCategories;
+
+    app.appendChild(back);
+
+
+
+    const h = document.createElement("h2");
+
+    h.innerText = cat.name;
+
+    app.appendChild(h);
+
+
+    cat.sub.forEach(s=>{
+
+
+        const btn = document.createElement("button");
+
+
+        btn.className = "btn category";
+
+
+        btn.innerText = s.name;
+
+
+
+        btn.onclick = ()=>{
+
+            showWords(cat.key, s.name, s.key);
+
+        };
+
+
+        app.appendChild(btn);
+
+
+
+    });
+
 
 }
 function showFeedback(){
@@ -568,6 +646,7 @@ function showFeedback(){
 
   app.appendChild(back);
 
+
   // Title
 
   const title = document.createElement("h2");
@@ -576,10 +655,13 @@ function showFeedback(){
 
   app.appendChild(title);
 
+
   const form = document.createElement("div");
 
 
   form.className = "feedbackForm";
+
+
 
   form.innerHTML = `
 
@@ -596,11 +678,14 @@ id="projectName"
 placeholder="Enter project name"
 >
 
+
 <label>
 2. 「現場簡易安衛用語」工具是否實用？
 <br>
 Is the “Simple Safety Language for Field Use” helpful?
 </label>
+
+
 
 <select id="helpful">
 
@@ -632,7 +717,6 @@ Is the “Simple Safety Language for Field Use” easy to use?
 
 <select id="easyUse">
 
-
 <option>
 非常實用且容易使用 Very useful
 </option>
@@ -659,16 +743,13 @@ Please indicate which part needs to be improved.
 
 <select id="improvement">
 
-
 <option>
 加更多語言 Add more languages
 </option>
 
-
 <option>
 需要更多詞語 Need more words
 </option>
-
 
 <option>
 其他意見 Additional comments
@@ -682,6 +763,8 @@ Please indicate which part needs to be improved.
 Additional comments
 </label>
 
+
+
 <textarea
 
 id="comments"
@@ -691,6 +774,10 @@ rows="5"
 placeholder="Please write your comments">
 
 </textarea>
+
+
+
+
 
 <button 
 class="submitBtn"
@@ -702,88 +789,16 @@ Submit (提交)
 
 `;
 
+
 app.appendChild(form);
 
 }
-async function submitFeedback(){
+function submitFeedback(){
 
-  console.log("Submit button clicked");
+alert("Feedback submitted!");
 
-  const projectName = document.getElementById("projectName").value;
-  const helpful = document.getElementById("helpful").value;
-  const easyUse = document.getElementById("easyUse").value;
-  const improvement = document.getElementById("improvement").value;
-  const comments = document.getElementById("comments").value;
-
-
-  console.log({
-    projectName,
-    helpful,
-    easyUse,
-    improvement,
-    comments
-  });
-
-  async function submitFeedback(){
-
-  console.log("Submit button clicked");
-
-  const projectName = document.getElementById("projectName").value;
-  const helpful = document.getElementById("helpful").value;
-  const easyUse = document.getElementById("easyUse").value;
-  const improvement = document.getElementById("improvement").value;
-  const comments = document.getElementById("comments").value;
-
-
-  console.log({
-    projectName,
-    helpful,
-    easyUse,
-    improvement,
-    comments
-  });
-
-
-  const { data, error } = await supabaseClient
-    .from("feedback")
-    .insert([
-      {
-        project_name: projectName,
-        helpful: helpful,
-        easy_use: easyUse,
-        improvement: improvement,
-        comments: comments
-      }
-    ])
-    .select();
-
-
-  console.log("Insert result:", data);
-
-
-  if (error) {
-
-    console.error("Full error:", error);
-    console.log("Code:", error.code);
-    console.log("Message:", error.message);
-    console.log("Details:", error.details);
-    console.log("Hint:", error.hint);
-
-    alert(
-      "Submit failed\n\n" +
-      "Code: " + error.code + "\n" +
-      "Message: " + error.message
-    );
-
-  } else {
-
-    console.log("Insert successful:", data);
-    alert("Feedback submitted!");
-
-  }
-
-  showCategories();
-
+}
+showCategories();
 </script>
 
 </body>
