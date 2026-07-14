@@ -738,20 +738,26 @@ async function submitFeedback(){
     ])
     .select();
 
+console.log("Insert result:", data);
 
-  console.log("Insert result:", data);
-  console.log("Insert error:", error);
+if (error) {
 
+  console.error("Full error:", error);
+  console.log("Code:", error.code);
+  console.log("Message:", error.message);
+  console.log("Details:", error.details);
+  console.log("Hint:", error.hint);
 
-  if(error){
+  alert(
+    "Submit failed\n\n" +
+    "Code: " + error.code + "\n" +
+    "Message: " + error.message
+  );
 
-    alert("Submit failed");
+} else {
 
-  }else{
-
-    alert("Feedback submitted!");
-
-  }
+  console.log("Insert successful:", data);
+  alert("Feedback submitted!");
 
 }
 showCategories();
