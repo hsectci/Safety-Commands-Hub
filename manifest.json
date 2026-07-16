@@ -1,13 +1,13 @@
 {
   "name": "Safety Commands Hub",
-  "short_name": "Safety Hub",
+  "short_name": "Safety Commands Hub",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f7fb",
   "theme_color": "#2C4AA5",
   "icons": [
     {
-      "src": "icons/engineer.png",
+      "src": "icons/engineer3.png",
       "sizes": "180x180",
       "type": "image/png"
     }
