@@ -282,6 +282,19 @@ audio {
 
 <body>
 
+<div id="passwordPage">
+
+<h2>s Hub</h2>
+
+<p>Please enter password</p>
+
+<input type="password" id="passwordInput">
+
+<button onclick="checkPassword()">Enter</button>
+
+<p id="errorMessage"></p>
+
+</div>
 <h1>Safety Commands Hub</h1>
 
 <div id="app"></div>
@@ -423,6 +436,33 @@ const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+function checkPassword(){
+
+    const password = document.getElementById("passwordInput").value;
+
+    if(password === "CTCI2026"){
+
+        document.getElementById("passwordPage").style.display = "none";
+
+        document.getElementById("app").style.display = "block";
+
+    } 
+    else {
+
+        document.getElementById("errorMessage").innerHTML =
+        "Incorrect password";
+
+    }
+}
+
+function getSearchText(item) {
+  return (
+    item.en + " " +
+    item.th + " " +
+    item.cn + " " +
+    item.pn
+  ).toLowerCase();
+} 
 function getSearchText(item) {
   return (
     item.en + " " +
