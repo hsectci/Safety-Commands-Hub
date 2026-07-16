@@ -297,7 +297,7 @@ audio {
 </div>
 <h1>Safety Commands Hub</h1>
 
-<div id="app"></div>
+<div id="app" style="display:none;"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
   if ("serviceWorker" in navigator) {
@@ -455,14 +455,6 @@ function checkPassword(){
     }
 }
 
-function getSearchText(item) {
-  return (
-    item.en + " " +
-    item.th + " " +
-    item.cn + " " +
-    item.pn
-  ).toLowerCase();
-} 
 function getSearchText(item) {
   return (
     item.en + " " +
