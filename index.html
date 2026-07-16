@@ -401,17 +401,40 @@ audio {
 
 <div id="passwordPage">
 
-<h2>請輸入密碼後再進入網站</h2>
+  <div class="passwordBox">
 
-<p>Please enter password (請輸入密碼)</p>
+    <div class="lockIcon">
+      🔒
+    </div>
 
-<input type="password" id="passwordInput">
+    <h2>
+      Safety Commands Hub
+    </h2>
 
-<button onclick="checkPassword()">Enter</button>
+    <p>
+      Please enter password<br>
+      請輸入密碼
+    </p>
 
-<p id="errorMessage"></p>
-</div>  
 
+    <input 
+      type="password" 
+      id="passwordInput"
+      placeholder="Password">
+
+
+    <button onclick="checkPassword()">
+      Enter 開始使用
+    </button>
+
+
+    <p id="errorMessage"></p>
+
+  </div>
+
+</div>
+
+  
 <div id="mainContent" style="display:none;">
 <h1>Safety Commands Hub</h1>
   
