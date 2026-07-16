@@ -284,9 +284,9 @@ audio {
 <button onclick="checkPassword()">Enter</button>
 
 <p id="errorMessage"></p>
-  
-<div id="app" style="display:none;"></div>
-</div>
+</div>  
+
+<div id="mainContent" style="display:none;">
 <h1>Safety Commands Hub</h1>
   
 <video class="mainBanner" autoplay muted loop playsinline>
@@ -298,7 +298,6 @@ audio {
 
 <input type="text" id="searchBox" placeholder="Search (英文 / 泰文 / 中文)" class="searchBox">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -444,8 +443,8 @@ function checkPassword(){
 
         document.getElementById("passwordPage").style.display = "none";
 
-        document.getElementById("app").style.display = "block";
-
+        document.getElementById("mainContent").style.display = "block";
+        showCategories();
     } 
     else {
 
