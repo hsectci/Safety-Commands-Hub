@@ -585,16 +585,22 @@ const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+  
 function checkPassword(){
 
     const password = document.getElementById("passwordInput").value;
 
     if(password === "CTCI2026"){
 
+        // Save login status
+        localStorage.setItem("safetyLogin", "true");
+
         document.getElementById("passwordPage").style.display = "none";
 
         document.getElementById("mainContent").style.display = "block";
+
         showCategories();
+
     } 
     else {
 
@@ -603,6 +609,22 @@ function checkPassword(){
 
     }
 }
+
+
+// Check if user already entered password before
+window.onload = function(){
+
+    if(localStorage.getItem("safetyLogin") === "true"){
+
+        document.getElementById("passwordPage").style.display = "none";
+
+        document.getElementById("mainContent").style.display = "block";
+
+        showCategories();
+
+    }
+
+};
 
 function getSearchText(item) {
   return (
