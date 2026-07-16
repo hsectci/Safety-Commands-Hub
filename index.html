@@ -258,8 +258,134 @@ audio {
 
   cursor: pointer;
 
+}
+ /* Password Page */
+
+#passwordPage {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: linear-gradient(180deg, #e8f0ff, #ffffff);
+
+  z-index: 9999;
 
 }
+
+
+.passwordBox {
+
+  width: 85%;
+
+  max-width: 380px;
+
+  background: white;
+
+  padding: 35px 25px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+}
+
+
+.lockIcon {
+
+  font-size: 50px;
+
+  margin-bottom: 10px;
+
+}
+
+
+.passwordBox h2 {
+
+  color: #1f2a44;
+
+  font-size: 26px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.passwordBox p {
+
+  color: #555;
+
+  font-size: 16px;
+
+}
+
+
+.passwordBox input {
+
+  width: 90%;
+
+  padding: 14px;
+
+  margin: 15px 0;
+
+  font-size: 18px;
+
+  text-align: center;
+
+  border-radius: 12px;
+
+  border: 1px solid #ccc;
+
+}
+
+
+.passwordBox button {
+
+  width: 95%;
+
+  padding: 15px;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  background: #1f2a44;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 12px;
+
+}
+
+
+.passwordBox button:active {
+
+  transform: scale(0.97);
+
+}
+
+
+#errorMessage {
+
+  color: red;
+
+  margin-top: 10px;
+
+} 
 
 
 
@@ -275,9 +401,9 @@ audio {
 
 <div id="passwordPage">
 
-<h2>s Hub</h2>
+<h2>請輸入密碼後再進入網站</h2>
 
-<p>Please enter password</p>
+<p>Please enter password (請輸入密碼)</p>
 
 <input type="password" id="passwordInput">
 
