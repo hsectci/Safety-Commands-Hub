@@ -468,7 +468,7 @@ const data = [
   { cat: "ppe", en: "英文: Wear your safety shoe", th: "泰文: ใส่รองเท้านิรภัยด้วย", cn: "中文: 請穿安全鞋!", pn: "泰文發音指南: sai (穿) rong-thao (鞋子) ni-ra-phai (安全)duay (-)" , audio: "safety_shoe.mp3" },
   { cat: "ppe", en: "英文: Wear a face mask", th: "泰文: ใส่หน้ากาก", cn: "中文: 戴上電焊面罩", pn: "泰文發音指南: sai (戴上) na-kaak (電焊面罩)", audio: "ใส่หน้ากาก.mp3" },
   { cat: "ppe", en: "英文: Wear gloves", th: "泰文: ใส่ถุงมือ", cn: "中文: 戴上防護手套", pn: "泰文發音指南: sai (戴上) thung-mue (防護手套)", audio: "ใส่ถุงมือ.mp3" },
-  { cat: "ppe", en: "英文: Wear earmuffs", th: 泰文: "ใส่ที่ครอบหู", cn: "中文:戴上耳罩", pn: "泰文發音指南: sai (戴上) thi-khrop-hu (耳罩)", audio: "ใส่ที่ครอบหู.mp3" },
+  { cat: "ppe", en: "英文: Wear earmuffs", th: "泰文: ใส่ที่ครอบหู", cn: "中文:戴上耳罩", pn: "泰文發音指南: sai (戴上) thi-khrop-hu (耳罩)", audio: "ใส่ที่ครอบหู.mp3" },
   { cat: "emergency", en: "英文: Get down now, it is not safe", th: "泰文: ลงมามันอันตราย", cn: "中文: 下來! 很危險", pn: "泰文發音指南: long-ma (下來) man(這樣) an-ta-rai (危險)" , audio: "dangerous.mp3" },
   { cat: "emergency", en: "英文: Step away from that area", th: "泰文: ออกมา อย่ายืนตรงนั้น", cn: "中文: 你過來！不要站在那邊", pn: "泰文發音指南: ok mar (過來), ya (不要) yuen (站在) tong nan(那邊)" , audio: "step_away.mp3" },
   { cat: "emergency", en: "英文: Stop!", th: "泰文: หยุดทำเดี๋ยวนี้", cn: "中文: 停止！", pn: "泰文發音指南: yut (停止！) tham (做) diao-nee(馬上)" , audio: "stop1.mp3" },
@@ -590,31 +590,39 @@ const data = [
 ];
 
 const categories = [
-  { key: "gen", name: "General (常用詞彙 ) ", icon: "general.png" },
-   sub:[{key: "basic", name: "Basic Communication (基本用語) "},
-             {key: "health", name: "Health & Welfare (健康與照護) ）"},
-             {key: "per", name: "Site personnel and ways of addressing people (現場人員與稱呼)"}
-  ]                      
+  { 
+    key: "gen", 
+    name: "General (常用詞彙)", 
+    icon: "general.png",
+    sub:[
+      {key: "basic", name: "Basic Communication (基本用語)"},
+      {key: "health", name: "Health & Welfare (健康與照護)"},
+      {key: "per", name: "Site personnel and ways of addressing people (現場人員與稱呼)"}
+    ]
   },
+
   { key: "ppe", name: "PPE (個人防護具)", icon: "PPE1.png" },
   { key: "material", name: "Material Stacking (物料堆放)", icon: "material.png" },
-  { key: "lifting", name: "Lifting (吊掛作業)", icon: "crane2.png",
-        sub:[{key: "bflifting", name: "Preparation (吊裝前準備)"},
-             {key: "comlifting", name: "Crane Operation（起重機操作）"},
-             {key: "MEWP", name: "MEWP Operation (高空工作車操作)"},
-             {key: "emerlifting", name: "Emergency Commands（緊急與安全指令）"},]
 
-                        
+  { 
+    key: "lifting", 
+    name: "Lifting (吊掛作業)", 
+    icon: "crane2.png",
+    sub:[
+      {key: "bflifting", name: "Preparation (吊裝前準備)"},
+      {key: "comlifting", name: "Crane Operation (起重機操作)"},
+      {key: "MEWP", name: "MEWP Operation (高空工作車操作)"},
+      {key: "emerlifting", name: "Emergency Commands (緊急與安全指令)"}
+    ]
   },
+
   { key: "WAH", name: "Work at Height (高處作業)", icon: "harness.png" },
   { key: "Fire", name: "Fire Prevention (防火防護)", icon: "fire.png" },
   { key: "Elec", name: "Electrocuted (電氣安全)", icon: "elec.png" },
   { key: "Steel", name: "Steel Structure Work (鋼構組配作業)", icon: "steel.png" },
   { key: "emergency", name: "Emergency (停止指令)", icon: "alert2.png" },
-  { key: "com", name: "Compliment (讚美)", icon: "like2.png" },
-
+ 
 ];
-
 const app = document.getElementById("app");
 const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
 
