@@ -16,7 +16,7 @@ const FILES_TO_CACHE = [
 "./icons/alert2.png",
 "./icons/like2.png",
 
-  "./icons/banner3.png",
+  "./icons/banner4.png",
   
 "./MP3/helmet.mp3",
 "./MP3/คาดสายรัดคาง.mp3",
