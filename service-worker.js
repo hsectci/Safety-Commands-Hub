@@ -27,7 +27,7 @@ const FILES_TO_CACHE = [
 "./MP3/ใส่ถุงมือ.mp3",
 "./MP3/ใส่ที่ครอบหู.mp3",
 "./MP3/dangerous.mp3",
-"./MP3/step_away.mp3",
+"./MP3/ออกมาอย่าไปยืนตรงนั้น.mp3",
 "./MP3/stop1.mp3",
 "./MP3/stop_doing.mp3",
 "./MP3/watchout.mp3",
@@ -144,6 +144,9 @@ const FILES_TO_CACHE = [
 "./MP3/เจ้าหน้าที่ความปลอดภัย.mp3",
 "./MP3/ผู้รับเหมา.mp3",
 "./MP3/ผู้ให้สัญญาณ.mp3",
+
+  "./MP3/มากับฉัน.mp3",
+  "./MP3/ความปลอดภัยอันดับหนึ่ง.mp3",
 
 ];
 
