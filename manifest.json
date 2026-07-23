@@ -1,6 +1,6 @@
 {
-  "name": "Safety Commands Hub",
-  "short_name": "Safety Commands Hub",
+  "name": "泰好講",
+  "short_name": "泰好講",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f7fb",
