@@ -859,6 +859,7 @@ function showSubCategories(cat){
         app.appendChild(btn);
 
     });
+}
 function addHeart(id){
 
   let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
@@ -872,7 +873,7 @@ function addHeart(id){
 
   document.getElementById("heart-"+id).innerText = hearts[id];
 }
-}
+
 function showSubCategories(cat){
 
 
