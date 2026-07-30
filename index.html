@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/engineer5.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/engineer4.png">
 
 
 <style>
@@ -97,14 +97,14 @@ audio {
 }
 /*Banner*/
 .mainBanner {
- width: 100%;
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 250px;
   object-fit: cover;
-  display: block;
 
   border-radius: 15px;
   margin: 10px 0 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 .searchBox {
   width: 90%;
@@ -434,7 +434,6 @@ audio {
 
 </div>
 
-  
 <div id="mainContent" style="display:none;">
 <h1>Safety Commands Hub</h1>
 <p>Version 1.1</p> 
@@ -566,7 +565,8 @@ const data = [
   { cat: "gen", sub: "basic", en: "英文: Awesome!", th: "泰文: สุดยอด", cn: "中文: 很棒！", pn: "泰文發音指南: sut-yot(很棒)" , audio: "Awesome.mp3" },
   { cat: "gen", sub: "basic", en: "英文: Thank you", th: "泰文: ขอบคุณมาก", cn: "中文: 謝謝！", pn: "泰文發音指南: khop-khun (謝謝) mak (非常)" , audio: "thankyou.mp3" },
   { cat: "gen", sub: "basic", en: "英文: Thank you for your cooperation", th: "泰文: ขอบคุณสำหรับความร่วมมือ", cn: "中文: 謝謝你的配合", pn: "泰文發音指南: khop-khun (謝謝) sam-rap (為了) khwam-ruam-mue (配合)" , audio: "cooperation.mp3" },
-  { cat: "gen", sub: "basic", en: "英文: Safety First", th: "泰文:  ความปลอดภัยอันดับหนึ่ง", cn: "中文: 安全第一", pn: "泰文發音指南: Khwam-pod-pai (安全) an-dap-nueng (第一)" , audio: "ความปลอดภัยอันดับหนึ่ง.mp3" },
+  { cat: "gen", sub: "basic", en: "英文: Safety First", th: "泰文:  ความปลอดภัยอันดับหนึ่ง", cn: "中文: 安全第一", pn: "泰文發音指南: Khwam-pod-pai (安全) 
+an-dap-nueng (第一)" , audio: "ความปลอดภัยอันดับหนึ่ง.mp3" },
   { cat: "gen", sub: "health", en: "英文: Are you injured?", th: "泰文: บาดเจ็บไหม", cn: "中文: 你受傷嗎？", pn: "泰文發音指南: bat-jep (受傷) mai (嗎)" , audio: "บาดเจ็บไหม.mp3" },
   { cat: "gen", sub: "health", en: "英文: Are you feeling sick?", th: "泰文: ไม่สบายไหม", cn: "中文: 你不舒服嗎？", pn: "泰文發音指南: mai (不) sa-bai (舒服) mai (嗎)" , audio: "ไม่สบายไหม.mp3" },
   { cat: "gen", sub: "health", en: "英文: Go to the first aid room", th: "泰文: ไปห้องพยาบาล", cn: "中文: 去醫護室", pn: "泰文發音指南: pai (去) hong-pha-ya-ban (醫護室)" , audio: "ไปห้องพยาบาล.mp3" },
@@ -586,6 +586,7 @@ const data = [
   { cat: "gen", sub: "per", en: "英文: Safety Officer", th: "泰文: เจ้าหน้าที่ความปลอดภัย", cn: "中文: 安全衛生人員", pn: "泰文發音指南: jao-na-thi (衛生人員) khwam-pot-phai (安衛)" , audio: "เจ้าหน้าที่ความปลอดภัย.mp3" },
   { cat: "gen", sub: "per", en: "英文: Contractor", th: "泰文: ผู้รับเหมา", cn: "中文: 承攬商", pn: "泰文發音指南: phu-rap-mao" , audio: "ผู้รับเหมา.mp3" },
   { cat: "gen", sub: "per", en: "英文: Signalman", th: "泰文: ผู้ให้สัญญาณ", cn: "中文: 指揮手", pn: "泰文發音指南: phu-hai-san-yan" , audio: "ผู้ให้สัญญาณ.mp3" },
+
 ];
 
 const categories = [
@@ -622,17 +623,7 @@ const categories = [
   { key: "emergency", name: "Emergency (停止指令)", icon: "alert2.png" },
  
 ];
-
 const app = document.getElementById("app");
-const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
-
-const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
-
-
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
   
 function checkPassword(){
 
@@ -859,8 +850,8 @@ function showSubCategories(cat){
         app.appendChild(btn);
 
     });
-}
 
+}
 function showSubCategories(cat){
 
 
@@ -912,8 +903,8 @@ function showSubCategories(cat){
 
 }
 
-app.appendChild(form);
 
+app.appendChild(form);
 
 showCategories();
 </script>
