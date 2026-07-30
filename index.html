@@ -434,10 +434,13 @@ audio {
 
 </div>
 
+  
 <div id="mainContent" style="display:none;">
 <h1>Safety Commands Hub</h1>
 <p>Version 1.1</p> 
 <img class="mainBanner" src="icons/banner5.png" alt="Safety Banner">
+
+</video>
   
 <title>Safety Commands Hub</title>
 
@@ -565,8 +568,7 @@ const data = [
   { cat: "gen", sub: "basic", en: "英文: Awesome!", th: "泰文: สุดยอด", cn: "中文: 很棒！", pn: "泰文發音指南: sut-yot(很棒)" , audio: "Awesome.mp3" },
   { cat: "gen", sub: "basic", en: "英文: Thank you", th: "泰文: ขอบคุณมาก", cn: "中文: 謝謝！", pn: "泰文發音指南: khop-khun (謝謝) mak (非常)" , audio: "thankyou.mp3" },
   { cat: "gen", sub: "basic", en: "英文: Thank you for your cooperation", th: "泰文: ขอบคุณสำหรับความร่วมมือ", cn: "中文: 謝謝你的配合", pn: "泰文發音指南: khop-khun (謝謝) sam-rap (為了) khwam-ruam-mue (配合)" , audio: "cooperation.mp3" },
-  { cat: "gen", sub: "basic", en: "英文: Safety First", th: "泰文:  ความปลอดภัยอันดับหนึ่ง", cn: "中文: 安全第一", pn: "泰文發音指南: Khwam-pod-pai (安全) 
-an-dap-nueng (第一)" , audio: "ความปลอดภัยอันดับหนึ่ง.mp3" },
+  { cat: "gen", sub: "basic", en: "英文: Safety First", th: "泰文:  ความปลอดภัยอันดับหนึ่ง", cn: "中文: 安全第一", pn: "泰文發音指南: Khwam-pod-pai (安全) an-dap-nueng (第一)" , audio: "ความปลอดภัยอันดับหนึ่ง.mp3" },
   { cat: "gen", sub: "health", en: "英文: Are you injured?", th: "泰文: บาดเจ็บไหม", cn: "中文: 你受傷嗎？", pn: "泰文發音指南: bat-jep (受傷) mai (嗎)" , audio: "บาดเจ็บไหม.mp3" },
   { cat: "gen", sub: "health", en: "英文: Are you feeling sick?", th: "泰文: ไม่สบายไหม", cn: "中文: 你不舒服嗎？", pn: "泰文發音指南: mai (不) sa-bai (舒服) mai (嗎)" , audio: "ไม่สบายไหม.mp3" },
   { cat: "gen", sub: "health", en: "英文: Go to the first aid room", th: "泰文: ไปห้องพยาบาล", cn: "中文: 去醫護室", pn: "泰文發音指南: pai (去) hong-pha-ya-ban (醫護室)" , audio: "ไปห้องพยาบาล.mp3" },
@@ -586,7 +588,6 @@ an-dap-nueng (第一)" , audio: "ความปลอดภัยอันด�
   { cat: "gen", sub: "per", en: "英文: Safety Officer", th: "泰文: เจ้าหน้าที่ความปลอดภัย", cn: "中文: 安全衛生人員", pn: "泰文發音指南: jao-na-thi (衛生人員) khwam-pot-phai (安衛)" , audio: "เจ้าหน้าที่ความปลอดภัย.mp3" },
   { cat: "gen", sub: "per", en: "英文: Contractor", th: "泰文: ผู้รับเหมา", cn: "中文: 承攬商", pn: "泰文發音指南: phu-rap-mao" , audio: "ผู้รับเหมา.mp3" },
   { cat: "gen", sub: "per", en: "英文: Signalman", th: "泰文: ผู้ให้สัญญาณ", cn: "中文: 指揮手", pn: "泰文發音指南: phu-hai-san-yan" , audio: "ผู้ให้สัญญาณ.mp3" },
-
 ];
 
 const categories = [
@@ -621,9 +622,19 @@ const categories = [
   { key: "Elec", name: "Electrocuted (電氣安全)", icon: "elec.png" },
   { key: "Steel", name: "Steel Structure Work (鋼構組配作業)", icon: "steel.png" },
   { key: "emergency", name: "Emergency (停止指令)", icon: "alert2.png" },
- 
+  { key: "com", name: "Compliment (讚美)", icon: "like2.png" },
 ];
+
 const app = document.getElementById("app");
+const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
+
+const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
+
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
   
 function checkPassword(){
 
@@ -850,7 +861,19 @@ function showSubCategories(cat){
         app.appendChild(btn);
 
     });
+function addHeart(id){
 
+  let hearts = JSON.parse(localStorage.getItem("hearts")) || {};
+
+  hearts[id] = (hearts[id] || 0) + 1;
+
+  localStorage.setItem(
+    "hearts",
+    JSON.stringify(hearts)
+  );
+
+  document.getElementById("heart-"+id).innerText = hearts[id];
+}
 }
 function showSubCategories(cat){
 
@@ -902,10 +925,176 @@ function showSubCategories(cat){
 
 
 }
+function showFeedback(){
+
+
+  app.innerHTML = "";
+
+
+  // Back button
+
+  const back = document.createElement("button");
+
+  back.className = "btn";
+
+  back.id = "backBtn";
+
+  back.innerText = "← Back (回上一頁)";
+
+  back.onclick = showCategories;
+
+  app.appendChild(back);
+
+
+  // Title
+
+  const title = document.createElement("h2");
+  title.className = "feedbackTitle";
+
+
+  app.appendChild(title);
+
+
+  const form = document.createElement("div");
+
+
+  form.className = "feedbackForm";
+
+  form.innerHTML = `
+
+<label>
+1. 專案名稱 (Project name)
+</label>
+
+
+<input 
+type="text"
+id="projectName"
+placeholder="Enter project name"
+>
+
+
+<label>
+2. 「現場簡易安衛用語」工具是否實用？
+<br>
+Is the “Simple Safety Language for Field Use” helpful?
+</label>
+
+
+<select id="helpful">
+
+
+<option>
+非常實用且容易使用 Very useful
+</option>
+
+
+<option>
+尚可 Acceptable
+</option>
+
+
+<option>
+需要改善 Needs Improvement
+</option>
+
+
+</select>
+
+
+<label>
+3. 「現場簡易安衛用語」工具是否容易使用?
+<br>
+Is the “Simple Safety Language for Field Use” easy to use?
+</label>
+
+
+<select id="easyUse">
+
+<option>
+非常實用且容易使用 Very useful
+</option>
+
+
+<option>
+尚可 Acceptable
+</option>
+
+
+<option>
+需要改善 Needs Improvement
+</option>
+
+
+</select>
+
+
+<label>
+4. 請進一步說明需要改善的部分。
+<br>
+Please indicate which part needs to be improved.
+</label>
+
+
+<select id="improvement">
+
+
+<option>
+加更多語言 Add more languages
+</option>
+
+
+<option>
+需要更多詞語 Need more words
+</option>
+
+
+<option>
+其他意見 Additional comments
+</option>
+
+
+</select>
+
+
+<label>
+5. 其他意見
+<br>
+Additional comments
+</label>
+
+
+
+<textarea
+
+id="comments"
+
+rows="5"
+
+placeholder="Please write your comments">
+
+</textarea>
+
+<button 
+class="submitBtn"
+onclick="submitFeedback()">
+
+Submit (提交)
+
+</button>
+
+
+`;
 
 
 app.appendChild(form);
 
+}
+function submitFeedback(){
+
+alert("Feedback submitted!");
+
+}
 showCategories();
 </script>
 
