@@ -695,34 +695,7 @@ function showSearchResults(results) {
     app.appendChild(container);
   });
 }
-function showSubCategories(cat){
 
-    app.innerHTML = "";
-
-    const back = document.createElement("button");
-    back.className = "btn";
-    back.innerText = "← Back (回上一頁)";
-    back.onclick = showCategories;
-    app.appendChild(back);
-
-    const h = document.createElement("h2");
-    h.innerText = cat.name;
-    app.appendChild(h);
-
-    cat.sub.forEach(s=>{
-
-        const btn = document.createElement("button");
-        btn.className = "btn category";
-        btn.innerText = s.name;
-
-        btn.onclick = ()=>{
-            showWords(cat.key, s.name, s.key);
-        };
-
-        app.appendChild(btn);
-
-    });
-}
 function showSubCategories(cat){
 
 
