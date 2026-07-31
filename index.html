@@ -143,122 +143,7 @@ audio {
   color: #555;
 
 }
-/* Feedback Form */
 
-.feedbackForm {
-
-  background: white;
-
-  color: black;
-
-  padding: 20px;
-
-  border-radius: 15px;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-
-}
-
-
-
-.feedbackTitle {
-
-  text-align: center;
-
-  font-size: 24px;
-
-  font-weight: bold;
-
-  color: #1f2a44;
-
-  margin-bottom: 15px;
-
-}
-
-
-
-.feedbackForm label {
-
-  font-size: 17px;
-
-  font-weight: bold;
-
-  color: #000000;
-
-  margin-top: 12px;
-
-}
-
-
-
-.feedbackForm input,
-
-.feedbackForm select,
-
-.feedbackForm textarea {
-
-
-  width: 100%;
-
-  box-sizing: border-box;
-
-  padding: 12px;
-
-  font-size: 16px;
-
-  border-radius: 10px;
-
-  border: 1px solid #ccc;
-
-  background: #f8f9fa;
-
-
-}
-
-
-
-.feedbackForm select {
-
-  cursor: pointer;
-
-}
-
-
-
-.feedbackForm textarea {
-
-  min-height: 100px;
-
-}
-
-
-
-.submitBtn {
-
-
-  margin-top: 20px;
-
-  background: #1f2a44;
-
-  color: white;
-
-  border: none;
-
-  padding: 15px;
-
-  border-radius: 12px;
-
-  font-size: 18px;
-
-  cursor: pointer;
-
-}
  /* Password Page */
 
 #passwordPage {
@@ -435,12 +320,11 @@ audio {
 </div>
 
   
+
 <div id="mainContent" style="display:none;">
 <h1>Safety Commands Hub</h1>
 <p>Version 1.1</p> 
 <img class="mainBanner" src="icons/banner5.png" alt="Safety Banner">
-
-</video>
   
 <title>Safety Commands Hub</title>
 
@@ -460,7 +344,7 @@ audio {
     });
   }
 const data = [
-  { cat: "ppe", en: "英文: Wear safety helmet", th: "泰文: ใส่หมวกด้วย", cn: "中文: 請戴安全帽", pn: "泰文發音指南: sai (帶) muak (帽子) duay (-)", audio: "helmet.mp3" },
+ { cat: "ppe", en: "英文: Wear safety helmet", th: "泰文: ใส่หมวกด้วย", cn: "中文: 請戴安全帽", pn: "泰文發音指南: sai (帶) muak (帽子) duay (-)", audio: "helmet.mp3" },
   { cat: "ppe", en: "英文: Fasten the chin strap", th: "泰文: คาดสายรัดคาง", cn: "中文: 繫好下巴帶", pn: "泰文發音指南: khat(繫好) sai-rat-khang(下巴帶)", audio: "คาดสายรัดคาง.mp3" },
   { cat: "ppe", en: "英文: Wear your safey harness", th: "泰文: ใส่เข็มขัดนิรภัยด้วย", cn: "中文: 請配戴安全帶",pn: "泰文發音指南: sai (帶) khem-khat (帶子) ni-ra-phai (安全)duay(-)" , audio: "safety_harness.mp3" },
   { cat: "ppe", en: "英文: Hook your safety harness", th: "泰文: เกี่ยวตะขอด้วย", cn: "中文: 勾安全帶!", pn: "泰文發音指南: giao (勾) ta-kor (安全鉤) duay (-)" , audio: "hook.mp3" },
@@ -568,7 +452,8 @@ const data = [
   { cat: "gen", sub: "basic", en: "英文: Awesome!", th: "泰文: สุดยอด", cn: "中文: 很棒！", pn: "泰文發音指南: sut-yot(很棒)" , audio: "Awesome.mp3" },
   { cat: "gen", sub: "basic", en: "英文: Thank you", th: "泰文: ขอบคุณมาก", cn: "中文: 謝謝！", pn: "泰文發音指南: khop-khun (謝謝) mak (非常)" , audio: "thankyou.mp3" },
   { cat: "gen", sub: "basic", en: "英文: Thank you for your cooperation", th: "泰文: ขอบคุณสำหรับความร่วมมือ", cn: "中文: 謝謝你的配合", pn: "泰文發音指南: khop-khun (謝謝) sam-rap (為了) khwam-ruam-mue (配合)" , audio: "cooperation.mp3" },
-  { cat: "gen", sub: "basic", en: "英文: Safety First", th: "泰文:  ความปลอดภัยอันดับหนึ่ง", cn: "中文: 安全第一", pn: "泰文發音指南: Khwam-pod-pai (安全) an-dap-nueng (第一)" , audio: "ความปลอดภัยอันดับหนึ่ง.mp3" },
+  { cat: "gen", sub: "basic", en: "英文: Safety First", th: "泰文:  ความปลอดภัยอันดับหนึ่ง", cn: "中文: 安全第一", pn: "泰文發音指南: Khwam-pod-pai (安全) 
+an-dap-nueng (第一)" , audio: "ความปลอดภัยอันดับหนึ่ง.mp3" },
   { cat: "gen", sub: "health", en: "英文: Are you injured?", th: "泰文: บาดเจ็บไหม", cn: "中文: 你受傷嗎？", pn: "泰文發音指南: bat-jep (受傷) mai (嗎)" , audio: "บาดเจ็บไหม.mp3" },
   { cat: "gen", sub: "health", en: "英文: Are you feeling sick?", th: "泰文: ไม่สบายไหม", cn: "中文: 你不舒服嗎？", pn: "泰文發音指南: mai (不) sa-bai (舒服) mai (嗎)" , audio: "ไม่สบายไหม.mp3" },
   { cat: "gen", sub: "health", en: "英文: Go to the first aid room", th: "泰文: ไปห้องพยาบาล", cn: "中文: 去醫護室", pn: "泰文發音指南: pai (去) hong-pha-ya-ban (醫護室)" , audio: "ไปห้องพยาบาล.mp3" },
@@ -626,15 +511,7 @@ const categories = [
 ];
 
 const app = document.getElementById("app");
-const SUPABASE_URL = "https://eazzvhpbkrqdrffjjrjh.supabase.co/rest/v1/";
 
-const SUPABASE_KEY = "Ysb_publishable_yaO5hO1vLwm6NPblDMh--Q_16vybGJw";
-
-
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
   
 function checkPassword(){
 
@@ -711,13 +588,7 @@ function showCategories() {
     `;
 
     btn.onclick = () => {
-      if (cat.key === "feedback") {
-
-        showFeedback();
-
-      }
-
-      else if (cat.sub) {
+       if (cat.sub) {
         showSubCategories(cat);
       } else {
         showWords(cat.key, cat.name);
@@ -763,9 +634,7 @@ function showWords(catKey, title, subKey = null) {
 
     container.innerHTML = `
 
-    <button class="heartBtn">
-       <span id="heart-${item.id}"></span>
-      </button>
+  
       <div><b>${item.en}</b></div>
       <div>${item.cn || ""}</div>
       <div>${item.th}</div>
@@ -781,7 +650,6 @@ function showWords(catKey, title, subKey = null) {
     container.appendChild(audio);
     app.appendChild(container);
 
-    const heartBtn = container.querySelector(".heartBtn");
 
 heartBtn.onclick = ()=>{
 
@@ -861,7 +729,6 @@ function showSubCategories(cat){
         app.appendChild(btn);
 
     });
-
 }
 function showSubCategories(cat){
 
@@ -915,8 +782,6 @@ function showSubCategories(cat){
 }
 
 
-
-showCategories();
 </script>
 
 </body>
