@@ -269,7 +269,36 @@ audio {
   transform: scale(0.97);
 
 }
+/* How to use website button */
 
+.instructionBtn {
+
+  margin-top: 12px;
+
+  padding: 10px 16px;
+
+  background: transparent;
+
+  color: #1f2a44;
+
+  border: none;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  text-decoration: underline;
+
+}
+
+
+.instructionBtn:active {
+
+  transform: scale(0.97);
+
+}
 
 #errorMessage {
 
@@ -318,7 +347,9 @@ audio {
     <button onclick="checkPassword()">
       Enter 開始使用
     </button>
-
+    <button class="instructionBtn" onclick="openPDF()">
+  ⓘ How to use the website
+    </button>
 
     <p id="errorMessage"></p>
 
@@ -532,7 +563,11 @@ const categories = [
 ];
 
 const app = document.getElementById("app");
+function openPDF() {
 
+    window.open("PDF/SafetyCommandsHubInstruction.pdf", "_blank");
+
+}
   
 function checkPassword(){
 
