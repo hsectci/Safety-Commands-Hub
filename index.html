@@ -372,6 +372,79 @@ audio {
   
 <div id="app"></div>
 <script>
+ // ===============================
+// USER / VISIT TRACKING
+// ===============================
+
+const TRACKING_URL = "1bIJRL3kUTvihS4MfgrcECajtKPjL1kWVilfXO7NvDv0";
+
+function initializeUserTracking() {
+
+    let userId = localStorage.getItem("safetyUserId");
+    let isFirstVisit = false;
+
+    // Create anonymous user ID for first-time visitor
+    if (!userId) {
+
+        userId = crypto.randomUUID();
+
+        localStorage.setItem(
+            "safetyUserId",
+            userId
+        );
+
+        isFirstVisit = true;
+    }
+
+    // Count visits
+    let visitCount =
+        parseInt(
+            localStorage.getItem("safetyVisitCount") || "0"
+        );
+
+    visitCount++;
+
+    localStorage.setItem(
+        "safetyVisitCount",
+        visitCount
+    );
+
+    // Current visit time
+    const visitTime = new Date().toISOString();
+
+    localStorage.setItem(
+        "safetyLastVisit",
+        visitTime
+    );
+
+    const trackingData = {
+        userId: userId,
+        firstVisit: isFirstVisit,
+        visitCount: visitCount,
+        visitTime: visitTime
+    };
+
+    console.log("Tracking:", trackingData);
+
+    // Send visit information to Google Apps Script
+    fetch(TRACKING_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(trackingData)
+    })
+    .then(() => {
+        console.log("Visit tracking sent");
+    })
+    .catch(error => {
+        console.log("Tracking error:", error);
+    });
+
+    return trackingData;
+}
+
+const userTracking = initializeUserTracking();
+
+  
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker.register("./service-worker.js")
